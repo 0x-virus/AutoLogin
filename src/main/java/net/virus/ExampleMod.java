@@ -2,6 +2,7 @@ package net.virus;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.MinecraftClient;
 
@@ -23,5 +24,8 @@ public class ExampleMod implements ModInitializer {
 				login = false;
 			}
 		});
+		ClientPlayConnectionEvents.DISCONNECT.register(((handler, client) -> {
+			login = true;
+		}));
 	}
 }
